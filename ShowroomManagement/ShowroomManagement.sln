@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowroomManagement", "ShowroomManagement\ShowroomManagement.csproj", "{04DF609E-0723-493B-9271-920A3820D1DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShowroomManagement", "ShowroomManagement\ShowroomManagement.csproj", "{04DF609E-0723-493B-9271-920A3820D1DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowroomManagement(API)", "ShowroomManagement(API)\ShowroomManagement(API).csproj", "{89E9F995-275E-4D82-B72D-5C61BA6979EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShowroomManagement(API)", "ShowroomManagement(API)\ShowroomManagement(API).csproj", "{89E9F995-275E-4D82-B72D-5C61BA6979EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
