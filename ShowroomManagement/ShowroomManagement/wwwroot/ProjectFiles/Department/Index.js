@@ -17,6 +17,10 @@ function LoadData() {
                 <tr>
                     <td>${item.Name}</td>
                     <td>${item.Description}</td>
+                    <td>
+                        <a href="#" class="btn btn-info p-2"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="btn btn-danger p-2"><i class="fas fa-trash-alt"></i></a>
+                    </td>
                 </tr>
                 `);
             }
