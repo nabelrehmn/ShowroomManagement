@@ -1,5 +1,4 @@
 ﻿
-
 $(document).ready(function () {
     LoadData()
 });
@@ -41,4 +40,8 @@ function LoadData() {
         }
     });
 }
+
+// ------------- ADD DEPARMENT AND Pass TO API ------------- //
+
+
 
