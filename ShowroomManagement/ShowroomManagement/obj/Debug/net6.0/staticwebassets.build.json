@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Dpm8fppmYHyatjb14/IXAoQYoycTwRQLmvDWAxXd0sg=",
+  "Hash": "gitAnmMompWXQKBGOuoF963qmhJwFUTyw8yo231oc9c=",
   "Source": "ShowroomManagement",
   "BasePath": "_content/ShowroomManagement",
   "Mode": "Default",
@@ -36006,12 +36006,12 @@
       "OriginalItemSpec": "wwwroot\\ProjectFiles\\Brand\\Index.js"
     },
     {
-      "Identity": "D:\\Csharp Projects All\\ShowroomManagement\\ShowroomManagement\\ShowroomManagement\\wwwroot\\ProjectFiles\\Department\\Index.js",
+      "Identity": "D:\\Csharp Projects All\\ShowroomManagement\\ShowroomManagement\\ShowroomManagement\\wwwroot\\ProjectFiles\\Department\\FullCrud.js",
       "SourceId": "ShowroomManagement",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Csharp Projects All\\ShowroomManagement\\ShowroomManagement\\ShowroomManagement\\wwwroot\\",
       "BasePath": "_content/ShowroomManagement",
-      "RelativePath": "ProjectFiles/Department/Index.js",
+      "RelativePath": "ProjectFiles/Department/FullCrud.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -36020,7 +36020,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\ProjectFiles\\Department\\Index.js"
+      "OriginalItemSpec": "wwwroot\\ProjectFiles\\Department\\FullCrud.js"
     },
     {
       "Identity": "D:\\Csharp Projects All\\ShowroomManagement\\ShowroomManagement\\ShowroomManagement\\wwwroot\\ProjectFiles\\Utilities\\ApiUrls.js",

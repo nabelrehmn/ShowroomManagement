@@ -13,6 +13,7 @@ namespace ShowroomManagement_API_.Models
         {
             this.Db_Context = DbContext;
         }
+
         public async Task<ResponseDTO> GetDepartments()
         {
             var Response = new ResponseDTO();
@@ -28,5 +29,31 @@ namespace ShowroomManagement_API_.Models
 
             return Response;
         }
+
+        public async Task<ResponseDTO> AddDepartment(DepartmentDTO DepartmentDTO)
+        {
+            var Response = new ResponseDTO();
+
+            try
+            {
+                var Department = new Department() {
+                    Name = DepartmentDTO.Name,
+                    Description = DepartmentDTO.Description
+                };
+
+                await Db_Context.Departments.AddAsync(Department);
+                await Db_Context.SaveChangesAsync();
+
+                return Response.Response = "Department Created Successfully";
+            }
+            catch (Exception ex)
+            {
+                Response.ErrorMessage = ex.Message;
+            }
+
+            return Response;
+        }
     }
 }
+
+

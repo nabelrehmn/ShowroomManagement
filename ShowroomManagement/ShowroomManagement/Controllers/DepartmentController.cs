@@ -8,5 +8,10 @@ namespace ShowroomManagement.Controllers
         {
             return View();
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }

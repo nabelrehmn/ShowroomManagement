@@ -41,7 +41,39 @@ function LoadData() {
     });
 }
 
-// ------------- ADD DEPARMENT AND Pass TO API ------------- //
+// ------------- ALL WORK FOR CREATE OR ADD DEPARTMENT ------------- //
+
+$('#btnsubmit').on('click', function () {
+    if (!validatecontrols()) {
+        var Name = $('#txtname').val();
+        var Description = $('#txtdescription').val();
+
+        console.log(Name);
+        console.log(Description);
+    }
+});
+
+function validatecontrols() {
+    var isEmpty = false;
+    var Name = $('#txtname').val();
+    if (Name == '' || Name == null) {
+        isEmpty = true;
+        $('#errormsg').text(`This is a required field!`);
+        $('#txtname').addClass('border-danger');
+    }
+}
+
+$('#txtname').on('change', function () {
+    var Name = $('#txtname').val();
+    if (Name == '' || Name == null) {
+        $('#errormsg').text(`This is a required field!`);
+        $('#txtname').addClass('border-danger');
+    }
+    else {
+        $('#errormsg').empty();
+        $('#txtname').removeClass('border-danger');
+    }
+});
 
 
 
