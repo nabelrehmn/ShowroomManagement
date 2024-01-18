@@ -22,7 +22,7 @@ namespace ShowroomManagement_API_.Controllers
             return JsonConvert.SerializeObject(await Service.GetDepartments());
         }
 
-        [HttpPost("AddDepartment")]
+        [HttpPost("AddDepartments")]
         public async Task<string> AddDepartment(DepartmentDTO DepartmentDTO)
         {
             return JsonConvert.SerializeObject(await Service.AddDepartment(DepartmentDTO));

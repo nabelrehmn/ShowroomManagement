@@ -48,11 +48,25 @@ $('#btnsubmit').on('click', function () {
         var Name = $('#txtname').val();
         var Description = $('#txtdescription').val();
 
-        console.log(Name);
-        console.log(Description);
+        var DepartmentObj = {
+            "name": Name,
+            "description": Description
+        }
+
+        $.ajax({
+            url: APIURLS.Department_AddDepartments,
+            type: "Post",
+            data: JSON.stringify(DepartmentObj),
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (Response) {
+                return Response;
+            }
+        });
     }
 });
 
+// ----- VALIDATION WORK ON ONE FEILD NAME ----- //
 function validatecontrols() {
     var isEmpty = false;
     var Name = $('#txtname').val();
@@ -63,6 +77,7 @@ function validatecontrols() {
     }
 }
 
+// ----- REMOVE VALIDATION WORK ON ONE FEILD NAME ----- //
 $('#txtname').on('change', function () {
     var Name = $('#txtname').val();
     if (Name == '' || Name == null) {
