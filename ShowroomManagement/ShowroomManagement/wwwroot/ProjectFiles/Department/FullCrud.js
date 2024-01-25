@@ -3,7 +3,7 @@ $(document).ready(function () {
     LoadData()
 });
 
-// ------------- DEPARMENT DATA FATCH FROM API ------------- //
+// ------------- DEPARMENT DATA FATCH WITH API ------------- //
 function LoadData() {
     $.ajax({
         url: APIURLS.Department_GetDepartments,
@@ -18,7 +18,10 @@ function LoadData() {
                     <td>${item.Description}</td>
                     <td>
                         <a href="#" class="btn btn-info p-2"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="btn btn-danger p-2"><i class="fas fa-trash-alt"></i></a>
+                        <input type="hidden" value="${item.Id}">
+                        <a href="#" class="btn btn-danger p-2">
+                            <i class="fas fa-trash-alt" id="btndelete"></i>
+                        </a>
                     </td>
                 </tr>
                 `);
@@ -49,8 +52,8 @@ $('#btnsubmit').on('click', function () {
         var Description = $('#txtdescription').val();
 
         var DepartmentObj = {
-            "name": Name,
-            "description": Description
+            name: Name,
+            description: Description
         }
 
         $.ajax({
@@ -58,9 +61,19 @@ $('#btnsubmit').on('click', function () {
             type: "Post",
             data: JSON.stringify(DepartmentObj),
             contentType: 'application/json',
-            dataType: 'json',
             success: function (Response) {
-                return Response;
+                if (Response.ErrorMessage != null || Response.ErrorMessage != '') {
+                    Swal.fire({
+                        title: "Action Succesfull!",
+                        text: "Department has been created!",
+                        type: "success",
+                        confirmButtonText: "OK",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                    });
+                }
             }
         });
     }
@@ -88,6 +101,29 @@ $('#txtname').on('change', function () {
         $('#errormsg').empty();
         $('#txtname').removeClass('border-danger');
     }
+});
+
+// ----- DELETE DEPARTMENT FROM API ----- //
+
+$('body').on('click','#btndelete', function () {
+    var ID = $(this).prev().val();
+    Swal.fire({
+        title: "Action Succesfull!",
+        text: "Department has been created!",
+        confirmButtonText: "OK",
+        showCancelButton: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: APIURLS.Department_DeleteDepartments,
+                type: 'Get',
+                data: ,
+                success: function (Response) {
+                    console.log(Response);
+                }
+            });
+        }
+    });
 });
 
 

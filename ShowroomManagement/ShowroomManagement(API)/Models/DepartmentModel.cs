@@ -53,6 +53,28 @@ namespace ShowroomManagement_API_.Models
 
             return Response;
         }
+
+        public async Task<ResponseDTO> DeleteDepartment(int ID)
+        {
+            var Response = new ResponseDTO();
+
+            try
+            {
+                var Data = await Db_Context.Departments.Where(x => x.Id == ID).FirstOrDefaultAsync();
+                if (Data != null)
+                {
+                    Db_Context.Departments.Remove(Data);
+                    await Db_Context.SaveChangesAsync();
+                }
+                Response.Response = "Department Deleted Successfully";
+            }
+            catch(Exception ex)
+            {
+                Response.ErrorMessage = ex.Message;
+            }
+
+            return Response;
+        }
     }
 }
 
