@@ -12,5 +12,3 @@ namespace ShowroomManagement_API_.Repositories
     }
 }
 
-
-

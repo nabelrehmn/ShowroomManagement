@@ -19,8 +19,8 @@ function LoadData() {
                     <td>
                         <a href="#" class="btn btn-info p-2"><i class="fas fa-edit"></i></a>
                         <input type="hidden" value="${item.Id}">
-                        <a href="#" class="btn btn-danger p-2">
-                            <i class="fas fa-trash-alt" id="btndelete"></i>
+                        <a id="btndelete" class="btn btn-danger p-2">
+                            <i class="fas fa-trash-alt""></i>
                         </a>
                     </td>
                 </tr>
@@ -66,7 +66,7 @@ $('#btnsubmit').on('click', function () {
                     Swal.fire({
                         title: "Action Succesfull!",
                         text: "Department has been created!",
-                        type: "success",
+                        icon: "success",
                         confirmButtonText: "OK",
                     }).then((result) => {
                         if (result.isConfirmed) {
@@ -107,24 +107,43 @@ $('#txtname').on('change', function () {
 
 $('body').on('click','#btndelete', function () {
     var ID = $(this).prev().val();
+
+    var D_ID = {
+        id : ID
+    }
+ 
     Swal.fire({
-        title: "Action Succesfull!",
-        text: "Department has been created!",
-        confirmButtonText: "OK",
+        title: "ALERT!",
+        text: "Do you want to delete this Department!",
+        icon: "warning",
+        confirmButtonText: "Yes, delete it!",
         showCancelButton: true,
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
                 url: APIURLS.Department_DeleteDepartments,
                 type: 'Get',
-                data: ,
+                data: D_ID,
                 success: function (Response) {
-                    console.log(Response);
+                    if (Response.ErrorMessage != null || Response.ErrorMessage != '') {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Department has been deleted.",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
+                        });
+                    }
                 }
             });
         }
     });
 });
+
+
 
 
 
