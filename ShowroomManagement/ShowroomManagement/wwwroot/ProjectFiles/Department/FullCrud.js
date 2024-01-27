@@ -17,7 +17,9 @@ function LoadData() {
                     <td>${item.Name}</td>
                     <td>${item.Description}</td>
                     <td>
-                        <a href="#" class="btn btn-info p-2"><i class="fas fa-edit"></i></a>
+                        <a id="btnedit" class="btn btn-info p-2" data-toggle="modal" data-target="#modal-edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
                         <input type="hidden" value="${item.Id}">
                         <a id="btndelete" class="btn btn-danger p-2">
                             <i class="fas fa-trash-alt""></i>
@@ -108,7 +110,7 @@ $('#txtname').on('change', function () {
 $('body').on('click','#btndelete', function () {
     var ID = $(this).prev().val();
 
-    var D_ID = {
+    var DepartmentObj = {
         id : ID
     }
  
@@ -123,7 +125,7 @@ $('body').on('click','#btndelete', function () {
             $.ajax({
                 url: APIURLS.Department_DeleteDepartments,
                 type: 'Get',
-                data: D_ID,
+                data: DepartmentObj,
                 success: function (Response) {
                     if (Response.ErrorMessage != null || Response.ErrorMessage != '') {
                         Swal.fire({
@@ -143,7 +145,61 @@ $('body').on('click','#btndelete', function () {
     });
 });
 
+// ----- UPDATE DEPARTMENT FROM API ----- //
+
+$('body').on('click', '#btnedit', function () {
+
+    var D_ID = $(this).next().val();
+    var UpdateName = $('#txtnameedit').val();
+    var UpdateDescription = $('#txtdescriptionedit').val();
+
+    var DepartmentObj = {
+        id: D_ID,
+        name: UpdateName,
+        description: UpdateDescription
+    }
+
+    $.ajax({
+        url: APIURLS.Department_GetDepartments,
+        type: 'Get',
+        data: null,
+        success: function (response) {
+            var data = JSON.parse(response)
+            for (var item of data.Response) {
+                if (item.Id == D_ID) {
+                    $('#txtnameedit').append().val(item.Name);
+                    $('#txtdescriptionedit').append().val(item.Description);
+                }
+            }
+
+            if (UpdateName == item.Name || UpdateDescription == item.Description) {
+                window.location.reload();
+            }
+        }
+    });
+});
+
+function validatecontolsedit() {
+    var isEmpty = false;
+    var Name = $('#txtnameedit').val();
+    if (Name == '' || Name == null) {
+        isEmpty = true;
+        $('#errormsgedit').text(`This is a required field!`);
+        $('#txtnameedit').addClass('border-danger');
+    }
+}
 
 
-
-
+$('#txtnameedit').on('change', function () {
+    var Name = $('#txtnameedit').val();
+    if (Name == '' || Name == null) {
+        isEmpty = true;
+        $('#errormsgedit').text(`This is a required field!`);
+        $('#txtnameedit').addClass("border-danger");
+    }
+    else {
+        isEmpty = false;
+        $('#errormsgedit').empty();
+        $('#txtnameedit').removeClass('border-danger');
+    }
+});

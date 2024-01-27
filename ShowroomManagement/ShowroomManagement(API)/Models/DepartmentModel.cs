@@ -75,6 +75,34 @@ namespace ShowroomManagement_API_.Models
 
             return Response;
         }
+
+        public async Task<ResponseDTO> UpdateDepartment(DepartmentDTO DepartmentDTO)
+        {
+            var Response = new ResponseDTO();
+
+            try
+            {
+                var Department = new Department()
+                {
+                    Name = DepartmentDTO.Name,
+                    Description = DepartmentDTO.Description
+                };
+
+                var Data = await Db_Context.Departments.Where(x => x.Id == DepartmentDTO.ID).FirstOrDefaultAsync();
+                if (Data != null)
+                {
+                    Db_Context.Departments.Update(Department);
+                    await Db_Context.SaveChangesAsync();
+                }
+                Response.Response = "Department has been updated";
+            }
+            catch (Exception ex)
+            {
+                Response.ErrorMessage = ex.Message;
+            }
+
+            return Response;
+        }
     }
 }
 

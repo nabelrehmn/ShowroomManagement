@@ -29,7 +29,7 @@
                             <i class="fas fa-plus-circle"></i>
                             <h3 class="card-title mr-2">Add Department</h3>
                         </a>
-                        <!-------- Modal Work With Partial View -------->
+                        <!-------- Modal Add Work With Partial View -------->
                         <div class="modal fade pt-lg-5" id="modal-default">
                             <!-- Model Dailog -->
                             <div class="modal-dialog">
@@ -48,6 +48,31 @@
                                     <div class="modal-footer justify-content-between">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-primary" id="btnsubmit">Save</button>
+                                    </div>
+                                </div>
+                                <!-- Modal Content -->
+                            </div>
+                            <!-- Model Dailog -->
+                        </div>
+                        <!-------- Modal Update Work With Partial View -------->
+                        <div class="modal fade pt-lg-5" id="modal-edit">
+                            <!-- Model Dailog -->
+                            <div class="modal-dialog">
+                                <!-- Modal Content -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Update Deparment</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <!-- Partial View For Update Department -->
+                                    <div class="modal-body">
+                                        <partial name="Edit">
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="btnupdate">Update</button>
                                     </div>
                                 </div>
                                 <!-- Modal Content -->
