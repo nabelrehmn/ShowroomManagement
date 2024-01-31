@@ -10,7 +10,10 @@ namespace ShowroomManagement_API_.Repositories
 
         public Task<ResponseDTO> DeleteDepartment(int ID);
 
+        public Task<ResponseDTO> GetDepartmentById(int ID);
+
         public Task<ResponseDTO> UpdateDepartment(DepartmentDTO DepartmentDTO);
     }
 }
+
 

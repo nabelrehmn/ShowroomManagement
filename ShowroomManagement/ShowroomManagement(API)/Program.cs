@@ -25,6 +25,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(x =>
 
 // -------------- MODELS DEPENDENCY -------------- //
 builder.Services.AddScoped<IDepartment,DepartmentModel>();
+builder.Services.AddScoped<IEmployee,EmployeeModel>();
 
 var app = builder.Build();
 

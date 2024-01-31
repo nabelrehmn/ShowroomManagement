@@ -126,8 +126,8 @@ $('body').on('click','#btndelete', function () {
                 url: APIURLS.Department_DeleteDepartments,
                 type: 'Get',
                 data: DepartmentObj,
-                success: function (Response) {
-                    if (Response.ErrorMessage != null || Response.ErrorMessage != '') {
+                success: function (response) {
+                    if (response.ErrorMessage != null || response.ErrorMessage != '') {
                         Swal.fire({
                             title: "Deleted!",
                             text: "Department has been deleted.",
@@ -147,34 +147,61 @@ $('body').on('click','#btndelete', function () {
 
 // ----- UPDATE DEPARTMENT FROM API ----- //
 
-$('body').on('click', '#btnedit', function () {
+$('body').on('click','#btnedit', function () {
 
-    var D_ID = $(this).next().val();
-    var UpdateName = $('#txtnameedit').val();
-    var UpdateDescription = $('#txtdescriptionedit').val();
+    var ID = $(this).next().val();
 
     var DepartmentObj = {
-        id: D_ID,
-        name: UpdateName,
-        description: UpdateDescription
+        id : ID
     }
 
     $.ajax({
-        url: APIURLS.Department_GetDepartments,
+        url: APIURLS.Department_GetDepartmentById,
         type: 'Get',
-        data: null,
-        success: function (response) {
-            var data = JSON.parse(response)
-            for (var item of data.Response) {
-                if (item.Id == D_ID) {
-                    $('#txtnameedit').append().val(item.Name);
-                    $('#txtdescriptionedit').append().val(item.Description);
-                }
+        data: DepartmentObj,
+        success: function (Response) {
+            var data = JSON.parse(Response)
+            data = data.Response;
+            if (ID == data.Id) {
+                $('#txtnameedit').append().val(data.Name);
+                $('#txtdescriptionedit').append().val(data.Description);
             }
 
-            if (UpdateName == item.Name || UpdateDescription == item.Description) {
-                window.location.reload();
+            var name = $('#txtnameedit').val();
+            var description = $('#txtdescriptionedit').val();
+
+            var DepartmentObjs = {
+                id: ID,
+                name: name,
+                descrip: description
             }
+
+            $('#btnupdate').on('click', function () {
+                if (!validatecontolsedit()) {
+                    if (ID == data.Id) {
+                        $.ajax({
+                            url: APIURLS.Department_UpdateDepartments,
+                            type: 'Post',
+                            data: JSON.stringify(DepartmentObjs),
+                            contentType: 'application/json',
+                            success: function (response) {
+                                if (response.ErrorMessage != null || response.ErrorMessage != '') {
+                                    Swal.fire({
+                                        title: "Updated!",
+                                        text: "Department has been updated.",
+                                        icon: "success",
+                                        confirmButtonText: "OK"
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.reload();
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                }
+            });
         }
     });
 });

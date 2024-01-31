@@ -34,6 +34,12 @@ namespace ShowroomManagement_API_.Controllers
             return JsonConvert.SerializeObject(await Service.DeleteDepartment(ID));
         }
 
+        [HttpGet("GetDepartmentById")]
+        public async Task<string> GetDepartmentById(int ID)
+        {
+            return JsonConvert.SerializeObject(await Service.GetDepartmentById(ID));
+        }
+
         [HttpPost("UpdateDepartments")]
         public async Task<string> UpdateDepartment(DepartmentDTO DepartmentDTO)
         {
@@ -41,4 +47,3 @@ namespace ShowroomManagement_API_.Controllers
         }
     }
 }
-

@@ -76,25 +76,47 @@ namespace ShowroomManagement_API_.Models
             return Response;
         }
 
+        public async Task<ResponseDTO> GetDepartmentById(int ID)
+        {
+            var Response = new ResponseDTO();
+
+            try
+            {
+                var Department = await Db_Context.Departments.Where(x => x.Id == ID).FirstOrDefaultAsync();
+                if (Department == null) {
+                    Response.StatusCode = 404;
+                }
+                else
+                {
+                    Response.Response = Department;
+                }
+            }
+            catch(Exception ex)
+            {
+                Response.ErrorMessage = ex.Message;
+            }
+
+            return Response;
+        }
+
         public async Task<ResponseDTO> UpdateDepartment(DepartmentDTO DepartmentDTO)
         {
             var Response = new ResponseDTO();
 
             try
             {
-                var Department = new Department()
+                var Record = await Db_Context.Departments.Where(x => x.Id == DepartmentDTO.ID).FirstOrDefaultAsync();
+                
+                if (Record != null)
                 {
-                    Name = DepartmentDTO.Name,
-                    Description = DepartmentDTO.Description
-                };
+                    Record.Name = DepartmentDTO.Name;
+                    Record.Description = DepartmentDTO.Description;
 
-                var Data = await Db_Context.Departments.Where(x => x.Id == DepartmentDTO.ID).FirstOrDefaultAsync();
-                if (Data != null)
-                {
-                    Db_Context.Departments.Update(Department);
+                    Db_Context.Departments.Update(Record);
                     await Db_Context.SaveChangesAsync();
                 }
-                Response.Response = "Department has been updated";
+
+                return Response.Response = "Department has been updated";
             }
             catch (Exception ex)
             {
@@ -103,10 +125,9 @@ namespace ShowroomManagement_API_.Models
 
             return Response;
         }
+
     }
 }
-
-
 
 
 
