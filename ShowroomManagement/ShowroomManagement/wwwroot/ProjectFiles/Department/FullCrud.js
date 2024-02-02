@@ -150,6 +150,7 @@ $('body').on('click','#btndelete', function () {
 $('body').on('click','#btnedit', function () {
 
     var ID = $(this).next().val();
+    console.log(ID);
 
     var DepartmentObj = {
         id : ID
@@ -168,42 +169,42 @@ $('body').on('click','#btnedit', function () {
             }
         }
     });
-});
 
-$('#btnupdate').on('click', function () {
-    if (!validatecontolsedit()) {
-        var ID = $('#example1 tbody #btnedit').next().val();
-        console.log(ID);
-        var Name = $('#txtnameedit').val();
-        var Description = $('#txtdescriptionedit').val();
+    $('#btnupdate').on('click', function () {
+        if (!validatecontolsedit()) {
+            
+            var Name = $('#txtnameedit').val();
+            var Description = $('#txtdescriptionedit').val();
 
-        var DepartmentObjs = {
-            id: ID,
-            name: Name,
-            description: Description
-        }
-
-        $.ajax({
-            url: APIURLS.Department_UpdateDepartments,
-            type: "Post",
-            data: JSON.stringify(DepartmentObjs),
-            contentType: 'application/json',
-            success: function (response) {
-                if (response.ErrorMessage != null || response.ErrorMessage != '') {
-                    Swal.fire({
-                        title: "Updated!",
-                        text: "Department has been updated.",
-                        icon: "success",
-                        confirmButtonText: "OK"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.reload();
-                        }
-                    });
-                }
+            var DepartmentObjs = {
+                id: ID,
+                name: Name,
+                description: Description
             }
-        });
-    }
+
+            $.ajax({
+                url: APIURLS.Department_UpdateDepartments,
+                type: "Post",
+                data: JSON.stringify(DepartmentObjs),
+                contentType: 'application/json',
+                success: function (response) {
+                    if (response.ErrorMessage != null || response.ErrorMessage != '') {
+                        Swal.fire({
+                            title: "Updated!",
+                            text: "Department has been updated.",
+                            icon: "success",
+                            confirmButtonText: "OK"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
 });
 
 function validatecontolsedit() {
@@ -215,7 +216,6 @@ function validatecontolsedit() {
         $('#txtnameedit').addClass('border-danger');
     }
 }
-
 
 $('#txtnameedit').on('change', function () {
     var Name = $('#txtnameedit').val();
@@ -230,3 +230,4 @@ $('#txtnameedit').on('change', function () {
         $('#txtnameedit').removeClass('border-danger');
     }
 });
+

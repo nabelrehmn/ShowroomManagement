@@ -3,6 +3,8 @@ using ShowroomManagement_API_.Repositories;
 
 namespace ShowroomManagement_API_.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class EmployeeController : Controller
     {
         private readonly IEmployee Service;
@@ -10,9 +12,6 @@ namespace ShowroomManagement_API_.Controllers
         {
             this.Service = _Service;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+
     }
 }

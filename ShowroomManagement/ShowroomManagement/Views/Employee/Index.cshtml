@@ -1,0 +1,104 @@
+﻿<!-- Content Header (Page Header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">
+                    <strong>EMPLOYEES</strong>
+                </h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a asp-action="Index">Home</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Content Header (Page Header) -->
+
+<!-- Content Header -->
+<section class="content">
+    <!-- Container Fluid -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                            <i class="fas fa-plus-circle"></i>
+                            <h3 class="card-title mr-2">Add Employee</h3>
+                        </a>
+                        <!-------- Modal Add Work With Partial View -------->
+                        <div class="modal fade pt-lg-5" id="modal-default">
+                            <!-- Model Dailog -->
+                            <div class="modal-dialog">
+                                <!-- Modal Content -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Add New Employee</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <!-- Partial View For Add Department -->
+                                    <div class="modal-body">
+                                        <partial>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="btnsubmit">Save</button>
+                                    </div>
+                                </div>
+                                <!-- Modal Content -->
+                            </div>
+                            <!-- Model Dailog -->
+                        </div>
+                        <!-------- Modal Update Work With Partial View -------->
+                        <div class="modal fade pt-lg-5" id="modal-edit">
+                            <!-- Model Dailog -->
+                            <div class="modal-dialog">
+                                <!-- Modal Content -->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Update Employee</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <!-- Partial View For Update Department -->
+                                    <div class="modal-body">
+                                        <partial>
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="btnupdate">Update</button>
+                                    </div>
+                                </div>
+                                <!-- Modal Content -->
+                            </div>
+                            <!-- Model Dailog -->
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-------- DataTable Work -------->
+                        <table id="example1" class="table table-bordered table-striped text-center">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container Fluid -->
+</section>
+<!-- Content Header -->
+
