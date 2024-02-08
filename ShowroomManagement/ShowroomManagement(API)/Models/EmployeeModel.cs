@@ -26,7 +26,7 @@ namespace ShowroomManagement_API_.Models
                 if (EmployeeDTO.ProfileImage != null)
                 {
                     var FileName = EmployeeDTO.ProfileImage.FileName;
-                    path = Path.Combine(_WebHostEnvironment.WebRootPath,"Uploads");
+                    path = Path.Combine("Uploads", _WebHostEnvironment.WebRootPath+FileName);
                     using (Stream stream = new FileStream(path,FileMode.Create)) 
                     {
                         await EmployeeDTO.ProfileImage.CopyToAsync(stream);
