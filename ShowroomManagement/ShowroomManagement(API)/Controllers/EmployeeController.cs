@@ -21,5 +21,19 @@ namespace ShowroomManagement_API_.Controllers
         {
             return JsonConvert.SerializeObject(await Service.AddEmployee(EmployeeDTO));
         }
+
+        [HttpGet("DeleteEmployees")]
+        public async Task<string> DeleteEmployee(int ID)
+        {
+            return JsonConvert.SerializeObject(await Service.DeleteEmployee(ID));
+        }
+
+        [HttpGet("UpdateEmployees")]
+        public async Task<string> UpdateEmployee([FromForm] EmployeeDTO EmployeeDTO)
+        {
+            return JsonConvert.SerializeObject(await Service.UpdateEmployee(EmployeeDTO));
+        }
     }
 }
+
+

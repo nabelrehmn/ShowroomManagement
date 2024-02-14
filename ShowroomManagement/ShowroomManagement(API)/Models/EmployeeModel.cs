@@ -1,4 +1,5 @@
-﻿using ShowroomManagement_API_.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ShowroomManagement_API_.Data;
 using ShowroomManagement_API_.DTOs;
 using ShowroomManagement_API_.Repositories;
 using System.IO;
@@ -50,6 +51,51 @@ namespace ShowroomManagement_API_.Models
             catch(Exception ex)
             {
                 Response.Response = ex.Message;
+            }
+
+            return Response;
+        }
+
+        public async Task<ResponseDTO> DeleteEmployee(int ID)
+        {
+            var Response = new ResponseDTO();
+
+            try
+            {
+                var Data = await DB_Context.Employees.Where(x => x.Id == ID).FirstOrDefaultAsync();
+                
+                if(Data != null)
+                {
+                    var file = Data.ProfileImagePath;
+                    if (file != null || file != "")
+                    {
+                        File.Delete(file);
+                    }
+                    DB_Context.Employees.Remove(Data);
+                    await DB_Context.SaveChangesAsync();
+                }
+
+                Response.Response("Employee Deleted Successfully");
+            }
+            catch(Exception ex)
+            {
+                Response.ErrorMessage = ex.Message;
+            }
+
+            return Response;
+        }
+
+        public async Task<ResponseDTO> UpdateEmployee(EmployeeDTO EmployeeDTO)
+        {
+            var Response = new ResponseDTO();
+
+            try
+            {
+
+            }
+            catch(Exception ex)
+            {
+                Response.ErrorMessage = ex.Message;
             }
 
             return Response;
